@@ -12,8 +12,11 @@
 
 from sys import argv
 
-script, fq = argv
+script, fq, fq_trim, min_q, min_size = argv
+
 fq = open(fq)
+fq_trim = open(fq_trim, 'w')
+
 
 def get_read(fq):
     raw_read = list()
@@ -23,19 +26,14 @@ def get_read(fq):
         raw_read.append(newline1)
         n += 1
 
-    if raw_read:
+    if raw_read[0] is not "":
         return(raw_read)
     else:
         return(False)
 
 
 
-raw_read1 = get_read(fq)#test
-raw_read2 = get_read(fq)#test
-raw_read3 = get_read(fq)#tes
-print(raw_read1)
-print(raw_read2)
-print(raw_read3)
+
 
 
 
@@ -44,11 +42,11 @@ def trim_read_front(raw_read, min_q, min_size):
 
     for i in raw_read[3]:
         number = ord(i) - 33
-        if number <= min_q:
+        if number <= int(min_q):
             trimmed_bases += 1
         else:
             trimmed_read = [raw_read[0],raw_read[1][trimmed_bases:], raw_read[2], raw_read[3][trimmed_bases:]]
-            if len(trimmed_read[1]) >= min_size:
+            if len(trimmed_read[1]) >= int(min_size):
                 return(trimmed_read)
             else:
                 return(False)
@@ -57,8 +55,7 @@ def trim_read_front(raw_read, min_q, min_size):
 
 
 
-#trimmed_read1 = trim_read_front(raw_read1, 30, 30)######test
-#trimmed_read2 = trim_read_front(raw_read2, 20, 20)#############test
+
 
 
 #print(raw_read2)#####test
@@ -66,7 +63,39 @@ def trim_read_front(raw_read, min_q, min_size):
 
 
 
-#def main(argv):
+def main(argv):
+
+    print(f"Opening your file for reading...")
+    #print(f"Opening new file for writing...")
+    #new_name = open(fq_trim)
+
+    read_count = 0
+    trimmed_count = 0
+    removed_count = 0
+    readmore = 0
+    while readmore is not False:
+        readmore = get_read(fq)
+        print(readmore)
+        read_count += 1
+        for i in readmore:
+            trimmed_read = trim_read_front(readmore,min_q, min_size)
+            if trimmed_read:
+                trimmed_count += 1
+                for item in trimmed_read:
+                    fq_trim.write("%s\n" % item)
+                    fq_trim.write("\n")
+            else:
+                removed_count += 1
+    else:
+        exit(0)
+    print(f"{read_count} reads were found...")
+    print(f"{removed_count} reads were removed...")
+    print(f"{trimmed_count} reads were trimmed and kept...")
 
 
-#main(argv)
+
+
+
+
+
+main(argv)
