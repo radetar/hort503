@@ -1,0 +1,4 @@
+  File "Assignment12_Part_A.py", line 7
+    results = re.sub('.*?(^AT\dG\d+\.\d+|IPR\d+|$).*?’,r'\1,',text, 0, re.M)
+                                                                            ^
+SyntaxError: unexpected character after line continuation character
