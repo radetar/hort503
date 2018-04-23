@@ -1,0 +1,14 @@
+# hmmbuild :: profile HMM construction from multiple sequence alignments
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# input alignment file:             uniprot-kea1-filtered-reviewed%3Ayes.fasta.aln
+# output HMM file:                  uniprot-kea1-filtered-reviewed%3Ayes.fasta.aln.hmm
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# idx name                  nseq  alen  mlen eff_nseq re/pos description
+#---- -------------------- ----- ----- ----- -------- ------ -----------
+1     uniprot-kea1-filtered-reviewed%3Ayes.fasta     4  1284  1154     0.85  0.590 
+
+# CPU time: 1.34u 0.00s 00:00:01.34 Elapsed: 00:00:01.35
