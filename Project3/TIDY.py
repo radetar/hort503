@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 
-BLAST = pd.read_table('BLAST.txt', names = ["Query Accession", "Subject Accession", "Subject Title", "Percent Identity","Alignment length", "Number of mismatches", "Number of Gaps", "Start of Query Alignment", "End of Query Alignment","Start of Subject Alignment","End of Subject Alignment", "E value","Bitscore"])
+BLAST = pd.read_table('BLAST.txt', names = ["Query Accession", "Subject Accession", "Subject Title", "Percent Identity","Alignment length", "Number of mismatches", "Number of Gaps", "Start of Query Alignment", "End of Query Alignment","Start of Subject Alignment","End of Subject Alignment", "E value","Bitscore"], dtype=object)
 
 
 BLAST_A =BLAST['Query Accession'].value_counts()
